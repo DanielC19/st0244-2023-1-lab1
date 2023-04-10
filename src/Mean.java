@@ -8,9 +8,9 @@ import java.util.Scanner;
  */
 public class Mean {
 
-    // static {
-    //     System.loadLibrary("mean"); // Loads mean.dll
-    // }
+    static {
+        System.loadLibrary("mean"); // Loads mean.dll
+    }
 
     /**
      * Takes an array of integers and returns its arithmetic mean
