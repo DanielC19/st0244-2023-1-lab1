@@ -19,6 +19,8 @@ JNIEXPORT jdouble JNICALL Java_Lab1_mean
         sum += cArray[i];
     }
     jdouble mean = (jdouble)sum / length;
+    // Frees the memory allocated to the array previously obtained with the function GetIntArrayElements
+    env->ReleaseIntArrayElements(arr,cArray,0);
     
     return mean;
 }
