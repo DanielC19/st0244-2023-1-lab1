@@ -1,4 +1,4 @@
-#include <C:\Program Files\Java\jdk-19\include\jni.h>
+#include <jni.h>
 #include <iostream>
 #include "Lab1.h"
 using namespace std;
