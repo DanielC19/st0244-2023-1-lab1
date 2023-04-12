@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import javax.management.InvalidAttributeValueException;
 
 /**
  * Adapted from website:
@@ -26,6 +27,11 @@ public class Mean {
     public static void main(String[] args) {
         if (args.length == 1) {
             try {
+                // Validates the extension of the file
+                if (!args[0].endsWith(".txt") && !args[0].endsWith(".TXT")) {
+                    throw new IllegalArgumentException();
+                }
+
                 File file = new File(args[0]);
                 Scanner sc1 = new Scanner(file);
                 Scanner sc2 = new Scanner(file);
@@ -36,6 +42,13 @@ public class Mean {
                 while (sc1.hasNextInt()) {
                     sc1.nextInt();
                     counter++;
+                }
+
+                // Check if file is empty
+                if (counter == 0) {
+                    sc1.close();
+                    sc2.close();
+                    throw new InvalidAttributeValueException();
                 }
 
                 // Create an array of the needed amount of positions
@@ -53,11 +66,16 @@ public class Mean {
 
                 sc1.close();
                 sc2.close();
+
             } catch (FileNotFoundException e) {
                 System.out.println("Error: File not found.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error: File must be a '.txt'.");
+            } catch (InvalidAttributeValueException e) {
+                System.out.println("Error: File cannot be empty.");
             }
         } else {
-            System.out.println("Error: You have to write one command-line argument");
+            System.out.println("Error: You have to write one argument");
         }
     }
 }
