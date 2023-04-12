@@ -7,7 +7,7 @@ import javax.management.InvalidAttributeValueException;
  * Adapted from website:
  * https://www3.ntu.edu.sg/home/ehchua/programming/java/JavaNativeInterface.html
  */
-public class Mean {
+public class Lab1 {
 
     /**
      * Block of code to initialize before the program runs
@@ -64,7 +64,7 @@ public class Mean {
                 }
 
                 // Call C++ function to calculate the mean
-                double res = new Mean().mean(array);
+                double res = new Lab1().mean(array);
                 // Print answer
                 System.out.println("The mean of the integers is: " + res);
 

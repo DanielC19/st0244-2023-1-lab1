@@ -1,11 +1,11 @@
 compile-run :
-	javac -Xlint -Werror -h . Mean.java
 	g++ -I"%JAVA_HOME%\include" -I"%JAVA_HOME%\include\win32" -Wall -Wextra -Werror -shared -o mean.dll Mean.cpp
-	java Mean.java data.txt
+	javac -Xlint -Werror -h . Lab1.java
+	java Lab1.java data.txt
 
 compile :
-	javac -Xlint -Werror -h . Mean.java
 	g++ -I"%JAVA_HOME%\include" -I"%JAVA_HOME%\include\win32" -Wall -Wextra -Werror -shared -o mean.dll Mean.cpp
+	javac -Xlint -Werror -h . Lab1.java
 
 run :
-	java Mean.java data.txt
+	java Lab1.java data.txt

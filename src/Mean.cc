@@ -1,9 +1,9 @@
 #include <C:\Program Files\Java\jdk-19\include\jni.h>
 #include <iostream>
-#include "Mean.h"
+#include "Lab1.h"
 using namespace std;
 
-JNIEXPORT jdouble JNICALL Java_Mean_mean
+JNIEXPORT jdouble JNICALL Java_Lab1_mean
     (JNIEnv *env, jobject obj, jintArray arr) {
     // The elements of the array are obtained
     jint *cArray = (*env).GetIntArrayElements(arr, NULL);

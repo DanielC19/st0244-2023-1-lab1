@@ -1,6 +1,9 @@
 # Compiled class file
 *.class
 
+# C++ Header files
+*.h
+
 # Linking files
 *.dll
 *.so
