@@ -9,6 +9,10 @@ import javax.management.InvalidAttributeValueException;
  */
 public class Mean {
 
+    /**
+     * Block of code to initialize before the program runs
+     * used to load C++ generated library
+     */
     static {
         System.loadLibrary("mean"); // Loads mean.dll
     }
@@ -22,7 +26,7 @@ public class Mean {
 
     /**
      * Main function
-     * @param args
+     * @param args <filename>.txt
      */
     public static void main(String[] args) {
         if (args.length == 1) {
