@@ -4,12 +4,11 @@
 using namespace std;
 
 JNIEXPORT jdouble JNICALL Java_Lab1_mean
-    (JNIEnv *env, jobject obj, jintArray arr) {
+    (JNIEnv *env, jobject, jintArray arr) {
     // The elements of the array are obtained
     jint *cArray = (*env).GetIntArrayElements(arr, NULL);
     // It is checked that the array is not empty and if it is empty it returns 0.0
     if (cArray == NULL) return 0.0;
-    if (obj == NULL) return 0.0;
     // The size of the array is saved
     jsize length = (*env).GetArrayLength(arr);
     
