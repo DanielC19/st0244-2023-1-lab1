@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-import javax.management.InvalidAttributeValueException;
 
 public class Lab1 {
 
@@ -30,35 +29,40 @@ public class Lab1 {
             try {
                 // Validates the extension of the file
                 if (!args[0].endsWith(".txt") && !args[0].endsWith(".TXT")) {
-                    throw new IllegalArgumentException();
+                    String msg = "Error: File must be a '.txt'.";
+                    throw new IllegalArgumentException(msg);
                 }
 
                 // Read file
                 File file = new File(args[0]);
-                Scanner sc1 = new Scanner(file);
-                Scanner sc2 = new Scanner(file);
+                Scanner sc = new Scanner(file);
 
-                // Read the amount of numbers there are
-                // in the txt file
-                int counter = 0;
-                while (sc1.hasNextInt()) {
-                    sc1.nextInt();
-                    counter++;
+                // Read the entire line
+                String str = sc.nextLine();
+                sc.close();
+
+                // Split the string into an array by whitespaces
+                String[] strArray = str.split(" ");
+                if (strArray.length == 0) {
+                    String msg = "Error: File cannot be empty";
+                    throw new IllegalArgumentException(msg);
                 }
 
-                // Check if file is empty
-                if (counter == 0) {
-                    sc1.close();
-                    sc2.close();
-                    throw new InvalidAttributeValueException();
-                }
-
-                // Create an array of the needed amount of positions
-                int[] array = new int[counter];
-                int i = 0;
-                while (sc2.hasNextInt()) {
-                    array[i] = sc2.nextInt(); // Add integers to array
-                    i++;
+                // Create a int array and cast each String into int
+                int[] array = new int[strArray.length];
+                for (int i = 0; i < strArray.length; i++) {
+                    int maxLength = 9;
+                    // Allows one more character if number is negaive
+                    if (strArray[i].startsWith("-")) { 
+                        maxLength++;
+                    }
+                    // If number is too big, throw Exception
+                    if (strArray[i].length() > maxLength) {
+                        String msg = "Error: Number too big to read.";
+                        throw new IllegalArgumentException(msg);
+                    }
+                    // Cast string and add it to array
+                    array[i] = Integer.parseInt(strArray[i]);
                 }
 
                 // Call C++ function to calculate the mean
@@ -66,18 +70,14 @@ public class Lab1 {
                 // Print answer with 3 decimals
                 System.out.printf("The mean of the integers is: %.3f", res);
 
-                sc1.close();
-                sc2.close();
 
             } catch (FileNotFoundException e) {
-                System.out.println("Error: File not found.");
+                System.err.println("Error: File not found.");
             } catch (IllegalArgumentException e) {
-                System.out.println("Error: File must be a '.txt'.");
-            } catch (InvalidAttributeValueException e) {
-                System.out.println("Error: File cannot be empty.");
+                System.err.println(e.getMessage());
             }
         } else {
-            System.out.println("Error: You have to write one argument");
+            System.err.println("Error: You have to write one argument");
         }
     }
 }
