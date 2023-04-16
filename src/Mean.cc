@@ -3,6 +3,10 @@
 #include "Lab1.h"
 using namespace std;
 
+/**
+ * Adapted from website:
+ * https://www3.ntu.edu.sg/home/ehchua/programming/java/JavaNativeInterface.html
+ */
 JNIEXPORT jdouble JNICALL Java_Lab1_mean
     (JNIEnv *env, jobject, jintArray arr) {
     // The elements of the array are obtained
@@ -19,7 +23,7 @@ JNIEXPORT jdouble JNICALL Java_Lab1_mean
     }
     jdouble mean = (jdouble)sum / length;
     // Frees the memory allocated to the array previously obtained with the function GetIntArrayElements
-    env->ReleaseIntArrayElements(arr,cArray,0);
+    (*env).ReleaseIntArrayElements(arr,cArray,0);
     
     return mean;
 }
