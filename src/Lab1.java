@@ -3,10 +3,6 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import javax.management.InvalidAttributeValueException;
 
-/**
- * Adapted from website:
- * https://www3.ntu.edu.sg/home/ehchua/programming/java/JavaNativeInterface.html
- */
 public class Lab1 {
 
     /**
@@ -29,6 +25,7 @@ public class Lab1 {
      * @param args <filename>.txt
      */
     public static void main(String[] args) {
+        // Check there's exactly one argument
         if (args.length == 1) {
             try {
                 // Validates the extension of the file
@@ -36,6 +33,7 @@ public class Lab1 {
                     throw new IllegalArgumentException();
                 }
 
+                // Read file
                 File file = new File(args[0]);
                 Scanner sc1 = new Scanner(file);
                 Scanner sc2 = new Scanner(file);
@@ -65,8 +63,8 @@ public class Lab1 {
 
                 // Call C++ function to calculate the mean
                 double res = new Lab1().mean(array);
-                // Print answer
-                System.out.println("The mean of the integers is: " + res);
+                // Print answer with 3 decimals
+                System.out.printf("The mean of the integers is: %.3f", res);
 
                 sc1.close();
                 sc2.close();
